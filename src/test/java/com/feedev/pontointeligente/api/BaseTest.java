@@ -1,6 +1,5 @@
 package com.feedev.pontointeligente.api;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,13 +10,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class PontoInteligenteApiApplicationTests {
-	
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
+public class BaseTest {
 
-	@Test
-	public void contextLoads() {
-		log.info("TEST - {}", this.getClass().getSimpleName());
+	protected final Logger log = LoggerFactory.getLogger(this.getClass());
+	
+	public BaseTest() {
 	}
 
 }
