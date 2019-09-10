@@ -63,13 +63,6 @@ public class LancamentoRepositoryTest extends BaseTest {
 		this.empresaRepository.deleteAll();
 	}
 	
-	private Empresa obterDadosEmpresa() {
-		Empresa empresa = new Empresa();
-		empresa.setRazaoSocial("Empresa de exemplo");
-		empresa.setCnpj(CpfCnpjUtil.getCnpj(false));
-		return empresa;
-	}
-	
 	@Test
 	public void testBuscarLancamentosPorFuncionarioId() {
 		List<Lancamento> lancamentos = this.lancamentoRepository.findByFuncionarioId(this.funcionarioId);
@@ -81,6 +74,13 @@ public class LancamentoRepositoryTest extends BaseTest {
 		PageRequest page = PageRequest.of(0, 10);
 		Page<Lancamento> lancamentos = this.lancamentoRepository.findByFuncionarioId(this.funcionarioId, page);
 		assertEquals(2, lancamentos.getTotalElements());
+	}
+	
+	private Empresa obterDadosEmpresa() {
+		Empresa empresa = new Empresa();
+		empresa.setRazaoSocial("Empresa de exemplo");
+		empresa.setCnpj(CpfCnpjUtil.getCnpj(false));
+		return empresa;
 	}
 
 	private Funcionario obterDadosFuncionario(Empresa empresa) {
