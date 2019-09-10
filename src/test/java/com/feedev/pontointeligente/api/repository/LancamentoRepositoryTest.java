@@ -8,9 +8,13 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.feedev.pontointeligente.api.BaseTest;
 import com.feedev.pontointeligente.api.model.entities.Empresa;
@@ -22,6 +26,9 @@ import com.feedev.pontointeligente.api.util.CpfCnpjUtil;
 import com.feedev.pontointeligente.api.util.FakerDataUtil;
 import com.feedev.pontointeligente.api.util.PasswordUtils;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@ActiveProfiles("test")
 public class LancamentoRepositoryTest extends BaseTest {
 	
 	@Autowired
