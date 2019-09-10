@@ -20,8 +20,8 @@ public class PasswordUtils {
 	 */
 	public static String gerarBCrypt(String senha) {
 		if (StringUtils.isEmpty(senha)) {
-			log.info("{} - Senha vazia ou nula.", PasswordUtils.class.getClass().getName());
-			return senha;
+			log.info("{} - Senha vazia ou nula.", PasswordUtils.class.getClass().getSimpleName());
+			return null;
 		}
 		
 		log.info("{} - Gerando hash com BCrypt.", PasswordUtils.class.getClass().getName());
