@@ -119,21 +119,6 @@ public class CpfCnpjUtil {
         return numeroGerado;
     }
 
-
-    public static void main(String[] args) {
-        CpfCnpjUtil gerador = new CpfCnpjUtil();
-        String cpf = gerador.cpf(true);
-        System.out.printf("CPF: %s, Valido: %s\n", cpf, gerador.isCPF(cpf));
-
-        String cnpj = gerador.cnpj(false);
-        System.out.printf("CNPJ: %s, Valido: %s\n", cnpj, gerador.isCNPJ(cnpj));
-
-        String rg = gerador.rg(true);
-        System.out.printf("RG: %s", rg);
-    }
-
-
-
     public boolean isCPF(String CPF) {
 
         CPF = removeCaracteresEspeciais(CPF);

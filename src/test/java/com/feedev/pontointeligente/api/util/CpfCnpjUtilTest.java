@@ -29,6 +29,8 @@ public class CpfCnpjUtilTest {
 	public void testGerarCpfComPontuacao() {
 		log.info("Teste - Gerar cpf com pontuação.");
 		String cpf = CpfCnpjUtil.getCpf(true);
+		
+		// Regex - ^\d{3}\.\d{3}\.\d{3}\-\d{2}$
 		assertThat(cpf)
 			.matches("^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$");
 	}
@@ -46,6 +48,55 @@ public class CpfCnpjUtilTest {
 		log.info("Teste - Verificar cpf invalido.");
 		assertThat(new CpfCnpjUtil().isCPF("39940592230"))
 			.isFalse();
+	}
+	
+	@Test
+	public void testGerarCnpjSemPontuação() {
+		log.info("Teste - Gerar CNPJ sem pontuação.");
+		String cnpj = CpfCnpjUtil.getCnpj(false);
+		assertThat(cnpj)
+			.matches("[0-9]{14}");
+	}
+	
+	@Test
+	public void testGerarCnpjComPontuação() {
+		log.info("Teste - Gerar CNPJ com pontuação.");
+		String cnpj = CpfCnpjUtil.getCnpj(true);
+		
+		// Regex - ^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$
+		assertThat(cnpj)
+			.matches("^\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2}$");
+	}
+	
+	@Test
+	public void testVerificarCnpjValido() {
+		log.info("Teste - Verificar CNPJ válido.");
+		String cnpj = CpfCnpjUtil.getCnpj(true);
+		assertThat(new CpfCnpjUtil().isCNPJ(cnpj))
+			.isTrue();
+	}
+	
+	@Test
+	public void testVerificarCnpjInvalido() {
+		log.info("Teste - Verificar CNPJ inválido.");
+		assertThat(new CpfCnpjUtil().isCNPJ("23.223.332/2223-00"))
+			.isFalse();
+	}
+	
+	@Test
+	public void testGerarRgSemPontuacao() {
+		log.info("Teste - Gerar RG sem pontuação.");
+		String rg = CpfCnpjUtil.getRg(false);
+		assertThat(rg)
+			.hasSize(9);
+	}
+	
+	@Test
+	public void testGerarRgComPontuacao() {
+		log.info("Teste - Gerar RG com pontuação.");
+		String rg = CpfCnpjUtil.getRg(true);
+		assertThat(rg)
+			.hasSize(12);
 	}
 	
 }
