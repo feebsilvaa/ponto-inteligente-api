@@ -1,4 +1,4 @@
-package com.feedev.pontointeligente.api.service;
+package com.feedev.pontointeligente.api.service.impl;
 
 import java.util.Optional;
 
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.feedev.pontointeligente.api.model.entities.Empresa;
 import com.feedev.pontointeligente.api.repository.EmpresaRepository;
+import com.feedev.pontointeligente.api.service.EmpresaService;
 
 @Service
 public class EmpresaServiceImpl implements EmpresaService {

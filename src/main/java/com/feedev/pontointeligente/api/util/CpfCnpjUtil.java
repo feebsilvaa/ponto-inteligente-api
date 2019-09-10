@@ -275,4 +275,8 @@ public class CpfCnpjUtil {
 	public static String getCpf(boolean comPontos) {
 		return new CpfCnpjUtil().cpf(comPontos);
 	}
+	
+	public static String getRg(boolean comPontos) {
+		return new CpfCnpjUtil().rg(comPontos);
+	}
 }
