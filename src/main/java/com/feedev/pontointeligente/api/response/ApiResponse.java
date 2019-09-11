@@ -3,12 +3,12 @@ package com.feedev.pontointeligente.api.response;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Response<T> {
+public class ApiResponse<T> {
 
 	private T data;
 	private List<String> errors;
 	
-	public Response() {
+	public ApiResponse() {
 	}
 
 	public T getData() {
