@@ -12,7 +12,6 @@ public class PontoInteligenteApiApplication {
 	
 	public static void main(String[] args) {	
 		SpringApplication.run(PontoInteligenteApiApplication.class, args);
-		log.info("FEEDEV - It Works {}", log.isDebugEnabled());
 	}
 
 }
