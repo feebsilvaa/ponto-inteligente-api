@@ -29,8 +29,8 @@ import com.feedev.pontointeligente.api.v1.service.EmpresaService;
 import com.feedev.pontointeligente.api.v1.service.FuncionarioService;
 import com.feedev.pontointeligente.api.v1.util.PasswordUtils;
 
-@RestController
-@RequestMapping("/v1/pf")
+@RestController(value = "v1-pf-controller")
+@RequestMapping(path = "/v1/pf")
 @CrossOrigin(origins = "*")
 public class PFController {
 	

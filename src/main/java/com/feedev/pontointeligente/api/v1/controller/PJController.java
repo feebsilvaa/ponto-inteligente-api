@@ -29,7 +29,7 @@ import com.feedev.pontointeligente.api.v1.service.FuncionarioService;
 import com.feedev.pontointeligente.api.v1.util.PasswordUtils;
 
 @RestController(value = "v1-pj-controller")
-@RequestMapping("v1/pj")
+@RequestMapping(path = "v1/pj")
 @CrossOrigin(origins = "*")
 public class PJController {
 
