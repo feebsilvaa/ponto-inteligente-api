@@ -55,7 +55,7 @@ public class Lancamento implements Serializable {
 	}
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "data_lancamento", nullable = false)
+	@Column(name = "data", nullable = false)
 	public Date getDataLancamento() {
 		return dataLancamento;
 	}
