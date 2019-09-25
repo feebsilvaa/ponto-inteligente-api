@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.feedev.pontointeligente.api.v1.exception.FuncionarioNaoExisteException;
 import com.feedev.pontointeligente.api.v1.model.dto.FuncionarioRequestDto;
 import com.feedev.pontointeligente.api.v1.model.dto.FuncionarioResponseDto;
 import com.feedev.pontointeligente.api.v1.model.entities.Funcionario;
@@ -46,7 +47,7 @@ public class FuncionarioController {
 				@PathVariable("id") Long id,
 				@Valid @RequestBody FuncionarioRequestDto funcDto,
 				BindingResult bindingResult
-			) {
+			) throws FuncionarioNaoExisteException {
 		log.info("Atualizando funcionário: {}", funcDto);
 		ApiResponse<FuncionarioResponseDto> apiResponse = new ApiResponse<FuncionarioResponseDto>();
 		
@@ -55,7 +56,11 @@ public class FuncionarioController {
 			bindingResult.addError(new ObjectError("funcionario", "Funcionário não encontrado."));
 		}
 		
-		this.atualizarDadosFuncionarios(func.get(), funcDto, bindingResult);
+		// validação incluida para caso não tenha encontrado o usuário, não tente atualizar na tabela
+		if (!bindingResult.hasErrors()) {			
+			this.atualizarDadosFuncionarios(func.get(), funcDto, bindingResult);
+		}
+		
 		
 		if (bindingResult.hasErrors()) {
 			log.error("Erro de validação dos dados de Funcionário: {}", funcDto);
@@ -73,6 +78,8 @@ public class FuncionarioController {
 				
 		return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
 	}
+	
+	
 
 	private FuncionarioResponseDto converterFuncionarioParaDto(Funcionario funcionarioSalvo) {
 		FuncionarioResponseDto funcionarioDto = new FuncionarioResponseDto();
