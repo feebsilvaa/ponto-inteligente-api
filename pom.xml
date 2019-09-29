@@ -76,14 +76,6 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
-		<!-- Rest Assured -->
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>rest-assured</artifactId>
-			<version>4.1.1</version>
-			<scope>test</scope>
-		</dependency>
-
 		<!-- JSON Path -->
 		<dependency>
 			<groupId>io.rest-assured</groupId>
@@ -114,11 +106,20 @@
 			<version>3.6</version>
 		</dependency>
 
+		<!-- Google Gson para transformar objetos em JSON e vice-versa -->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.8.5</version>
+		</dependency>
+		
+		<!-- JWT Token -->
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
 		</dependency>
 
 	</dependencies>
