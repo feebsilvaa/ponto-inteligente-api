@@ -17,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -47,6 +48,7 @@ public class EmpresaControllerTest {
 	private static final String RAZAO_SOCIAL = new FakerDataUtil().company().name();
 
 	@Test
+	@WithMockUser
 	public void testTentarBuscarEmpresaPorCNPJInexistente() throws Exception {
 		log.info("Teste - Buscando empresa por cnpj inexistente: {}", CNPJ);
 		BDDMockito.given(this.empresaService.buscarPorCnpj(Mockito.anyString())).willReturn(Optional.empty());
@@ -58,6 +60,7 @@ public class EmpresaControllerTest {
 	}
 	
 	@Test
+	@WithMockUser
 	public void testBuscarEmpresaPorCNPJ() throws Exception {
 		log.info("Teste - Buscando empresa por cnpj: {}", CNPJ);
 		BDDMockito.given(this.empresaService.buscarPorCnpj(Mockito.anyString()))

@@ -10,6 +10,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -57,5 +58,20 @@ public class MainExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		return handleExceptionInternal(ex, apiResponse, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
 	}
-
+	
+	@ExceptionHandler(AccessDeniedException.class)
+	private ResponseEntity<?> handleAccessDeniedException(
+			AccessDeniedException ex,
+			WebRequest request
+			) {
+		
+		ApiResponse<?> apiResponse = new ApiResponse<>();
+		String msg = "Acesso negado! Você não tem permissão para realizar essa operação.";
+		
+		apiResponse.getErrors().add(msg);
+		
+		return handleExceptionInternal(ex, apiResponse, new HttpHeaders(), HttpStatus.FORBIDDEN, request);
+	}
+	
+	
 }
