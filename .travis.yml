@@ -7,4 +7,8 @@ before_install:
 branches:
   only:
     - master
-    
+
+deploy:
+  provider: heroku
+  api_key:  "6bb29bf9-d9ea-43fb-a2c6-586d3da51ab1"
+  on: master
