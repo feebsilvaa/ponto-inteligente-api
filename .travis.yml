@@ -1,9 +1,13 @@
 language: java
 jdk:
-  - openjdk8
+- openjdk8
 before_install:
-  - chmod +x mvnw
-
+- chmod +x mvnw
+deploy:
+  provider: heroku
+  api_key:
+    secure: MeVrPdbxTiKDjVShzspdaVd8jE0lB5k1pmO9G0EkgqLT7YHDIm5qIClEzVUHeyGd0mkbu/RiycYoCk81ciYV6RFa0WreJ7LAF9i8qC3/kSW02xXe42bsc37V3JGmG0kjnzGz1G/Dwsn3EeDWQX2hvH7+JHmZppd4JZunKNYxjVbi93NecDSS05gVAghBYlECmPf/GbmYjq6fDZjrlVNYGqztFm6qPkItghXgsZOeANbZO6AtSb0gBRO3/5T3u47T53pb1x/hlJt53cwWnCKqQjmfJKvyQa35bhm1AVZAs7ESXvMY3QpLuu+kZR2hwyNE8ovyYe1qfYcMMiu9FoXyCkGOB0O3asATuPYHTycsCce2ME/rdl/eoQfOH+3m2TYQc4cw0XRsSkd9n0JkdbEjL2W0X4He1qTzMeUAIsk1Fqri2bNl5axsEjRBEiidT+uW+hjKlhTIlhfvsBpNznMAP4H9vtuT751ha40Xyxuvb43l1sigTPmAlMgNqljvzlyuMuNpfdUEjoNascBewUFyPhwZ/+dY+inNG42mDQKWUGwQjhtUuUBjPV3wkJcQk3a/MmMzpzON0x24oRwxh5LlJfZnRGI1SJQ79rFpj3Zdn3yMVQyqLtRdgGxLfWnT6xiDpLhXM3zXrpHcV/201T01uJglVOwe8LcfAQ9I5XNT/VY=
+  app: feedev-ponto-inteligente-api
 branches:
   only:
-    - master
+  - master

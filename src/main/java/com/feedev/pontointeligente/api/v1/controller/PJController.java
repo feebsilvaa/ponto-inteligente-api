@@ -49,7 +49,7 @@ public class PJController {
 			Pageable pageable) {
 		ApiResponse<String> response = new ApiResponse<String>();
 
-		
+		// TODO: Implementar busca de pjs
 		
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
