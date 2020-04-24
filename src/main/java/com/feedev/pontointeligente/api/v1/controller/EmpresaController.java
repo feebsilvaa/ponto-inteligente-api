@@ -1,5 +1,6 @@
 package com.feedev.pontointeligente.api.v1.controller;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -24,26 +25,23 @@ import com.feedev.pontointeligente.api.v1.service.EmpresaService;
 public class EmpresaController {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private EmpresaService empresaService;
-	
+
 	@GetMapping(path = "cnpj/{cnpj}")
-	public ResponseEntity<ApiResponse<EmpresaDto>> buscarEmpresaPorCnpj(
-				@PathVariable("cnpj") String cnpj
-			) {
+	public ResponseEntity<?> buscarEmpresaPorCnpj(@PathVariable("cnpj") String cnpj) {
 		log.info("Buscando empresa por CNPJ: {}", cnpj);
-		ApiResponse<EmpresaDto> apiResponse = new ApiResponse<EmpresaDto>();
 		Optional<Empresa> empresaOpt = empresaService.buscarPorCnpj(cnpj);
-		
+
 		if (!empresaOpt.isPresent()) {
 			log.info("Empresa não encontrada para o CNPJ: {}", cnpj);
-			apiResponse.getErrors().add("Empresa não encontrada para o CNPJ " + cnpj);
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiResponse);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(null,
+					HttpStatus.BAD_REQUEST.name(), Arrays.asList("Empresa não encontrada para o CNPJ " + cnpj)));
 		}
-		
-		apiResponse.setData(this.converterEmpresaParaDto(empresaOpt.get()));
-		return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(new ApiResponse<>(this.converterEmpresaParaDto(empresaOpt.get()), HttpStatus.OK.name(), null));
 	}
 
 	private EmpresaDto converterEmpresaParaDto(Empresa empresa) {
@@ -53,5 +51,5 @@ public class EmpresaController {
 		dto.setRazaoSocial(empresa.getRazaoSocial());
 		return dto;
 	}
-	
+
 }

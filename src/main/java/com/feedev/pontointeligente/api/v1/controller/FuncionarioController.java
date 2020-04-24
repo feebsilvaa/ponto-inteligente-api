@@ -49,7 +49,6 @@ public class FuncionarioController {
 				BindingResult bindingResult
 			) throws FuncionarioNaoExisteException {
 		log.info("Atualizando funcionário: {}", funcDto);
-		ApiResponse<FuncionarioResponseDto> apiResponse = new ApiResponse<FuncionarioResponseDto>();
 		
 		Optional<Funcionario> func = this.funcionarioService.buscarPorId(id);
 		if (!func.isPresent()) {
@@ -63,6 +62,7 @@ public class FuncionarioController {
 		
 		
 		if (bindingResult.hasErrors()) {
+			ApiResponse<FuncionarioResponseDto> apiResponse = new ApiResponse<>(null, null, null);
 			log.error("Erro de validação dos dados de Funcionário: {}", funcDto);
 			bindingResult.getAllErrors().forEach((error) -> {
 				String erro = messageSource.getMessage(error, LocaleContextHolder.getLocale());
@@ -74,9 +74,9 @@ public class FuncionarioController {
 		}
 		
 		Funcionario funcionarioSalvo = this.funcionarioService.salvarFuncionario(func.get());
-		apiResponse.setData(this.converterFuncionarioParaDto(funcionarioSalvo));
 				
-		return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(new ApiResponse<>(this.converterFuncionarioParaDto(funcionarioSalvo), HttpStatus.OK.name(), null));
 	}
 	
 	
